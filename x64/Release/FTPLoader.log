@@ -1,0 +1,13 @@
+﻿  Main.cpp
+Main.cpp(35): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+Main.cpp(39): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+Main.cpp(43): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+Main.cpp(47): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+Main.cpp(236): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+  Generating code
+  1 of 361 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  FTPLoader.vcxproj -> C:\Users\Владелец\documents\visual studio 2015\Projects\FTPLoader\x64\Release\FTPLoader.exe
+  FTPLoader.vcxproj -> C:\Users\Владелец\documents\visual studio 2015\Projects\FTPLoader\x64\Release\FTPLoader.pdb (Full PDB)

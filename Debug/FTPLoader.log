@@ -1,0 +1,8 @@
+﻿  Main.cpp
+c:\users\владелец\documents\visual studio 2015\projects\ftploader\main.cpp(31): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+c:\users\владелец\documents\visual studio 2015\projects\ftploader\main.cpp(35): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+c:\users\владелец\documents\visual studio 2015\projects\ftploader\main.cpp(39): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+c:\users\владелец\documents\visual studio 2015\projects\ftploader\main.cpp(43): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+  LINK : c:\users\владелец\documents\visual studio 2015\Projects\FTPLoader\Debug\FTPLoader.exe not found or not built by the last incremental link; performing full link
+  FTPLoader.vcxproj -> c:\users\владелец\documents\visual studio 2015\Projects\FTPLoader\Debug\FTPLoader.exe
+  FTPLoader.vcxproj -> c:\users\владелец\documents\visual studio 2015\Projects\FTPLoader\Debug\FTPLoader.pdb (Partial PDB)
