@@ -1,0 +1,10 @@
+﻿  Updater.cpp
+Updater.cpp(59): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+Updater.cpp(63): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+Updater.cpp(67): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+Updater.cpp(71): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+  Generating code
+  All 229 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Uppdater.vcxproj -> C:\Users\Владелец\documents\visual studio 2015\Projects\FTPLoader\x64\Release\Uppdater.exe
+  Uppdater.vcxproj -> C:\Users\Владелец\documents\visual studio 2015\Projects\FTPLoader\x64\Release\Uppdater.pdb (Full PDB)

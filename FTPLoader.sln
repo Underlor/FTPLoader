@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FTPLoader", "FTPLoader.vcxproj", "{9EE7D22B-F43C-4D18-8F96-5574FC269EEF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Uppdater", "..\Uppdater\Uppdater.vcxproj", "{27AFE55D-105C-46CD-95AA-A85FF90EAAA9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Uppdater", "Uppdater\Uppdater.vcxproj", "{27AFE55D-105C-46CD-95AA-A85FF90EAAA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

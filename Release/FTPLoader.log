@@ -3,13 +3,19 @@ Main.cpp(35): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (pe
 Main.cpp(39): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
 Main.cpp(43): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
 Main.cpp(47): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (performance warning)
+Main.cpp(53): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
+Main.cpp(53): warning C4305: 'initializing': truncation from 'int' to 'char'
+Main.cpp(53): warning C4309: 'initializing': truncation of constant value
+Main.cpp(54): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
+Main.cpp(54): warning C4305: 'initializing': truncation from 'int' to 'char'
+Main.cpp(54): warning C4309: 'initializing': truncation of constant value
 Main.cpp(55): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
 Main.cpp(55): warning C4305: 'initializing': truncation from 'int' to 'char'
 Main.cpp(55): warning C4309: 'initializing': truncation of constant value
-Main.cpp(264): warning C4101: 'patch': unreferenced local variable
-Main.cpp(263): warning C4101: 'Patch': unreferenced local variable
+Main.cpp(263): warning C4101: 'patch': unreferenced local variable
+Main.cpp(262): warning C4101: 'Patch': unreferenced local variable
   Generating code
-  32 of 373 functions ( 8.6%) were compiled, the rest were copied from previous compilation.
+  2 of 373 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     29 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
