@@ -50,8 +50,8 @@ bool Ftp::renameFile(const char *f_old, const char *f_new) {
 
 
 string RusToEng(string m) {
-	char R[] = {'А','Б' ,'В' ,'Г' ,'Д' ,'Е' ,'Ё' ,'Ж' ,'З' ,'И' ,'Й' ,'К' ,'Л' ,'М' ,'Н', 'О', 'П', 'Р', 'С', 'Т', 'У' ,'Ф' ,'Х' ,'Ц' ,'Ч' ,'Ш' ,'Щ' ,'Ъ' ,'Ы' ,'Ь' ,'Э' ,'Ю' ,'Я' };
-	char r[] = { 'а','б' ,'в' ,'г' ,'д' ,'е' ,'ё' ,'ж' ,'з' ,'и' ,'й' ,'к' ,'л' ,'м' ,'н', 'о', 'п', 'р', 'с', 'т', 'у' ,'ф' ,'х' ,'ц' ,'ч' ,'ш' ,'щ' ,'ъ' ,'ы' ,'ь' ,'э' ,'ю' ,'я' };
+	char R[] = {'Рђ','Р‘' ,'Р’' ,'Р“' ,'Р”' ,'Р•' ,'РЃ' ,'Р–' ,'Р—' ,'Р' ,'Р™' ,'Рљ' ,'Р›' ,'Рњ' ,'Рќ', 'Рћ', 'Рџ', 'Р ', 'РЎ', 'Рў', 'РЈ' ,'Р¤' ,'РҐ' ,'Р¦' ,'Р§' ,'РЁ' ,'Р©' ,'РЄ' ,'Р«' ,'Р¬' ,'Р­' ,'Р®' ,'РЇ' };
+	char r[] = { 'Р°','Р±' ,'РІ' ,'Рі' ,'Рґ' ,'Рµ' ,'С‘' ,'Р¶' ,'Р·' ,'Рё' ,'Р№' ,'Рє' ,'Р»' ,'Рј' ,'РЅ', 'Рѕ', 'Рї', 'СЂ', 'СЃ', 'С‚', 'Сѓ' ,'С„' ,'С…' ,'С†' ,'С‡' ,'С€' ,'С‰' ,'СЉ' ,'С‹' ,'СЊ' ,'СЌ' ,'СЋ' ,'СЏ' };
 	char E[] = { 'A', 'B', 'V', 'G', 'D', 'E', 'E', 'J', 'Z', 'I', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'C', 'ch', 'SH', 'SH', 'b', 'bI', 'b', '3', 'IO', '9I'};
 	for (size_t i = 0; i < 33; i++)
 	{
@@ -61,14 +61,13 @@ string RusToEng(string m) {
 	return m;
 }
 
-
 int main(int argc, char* argv[]) {
 	setlocale(0, "");
 
 	if (argc == 1)
 	{
 		string ans;
-		cout << "Вы запустили программу не через контекстное меню. Провести автоматическую настройку реестра? (N/Y):";
+		cout << "Р’С‹ Р·Р°РїСѓСЃС‚РёР»Рё РїСЂРѕРіСЂР°РјРјСѓ РЅРµ С‡РµСЂРµР· РєРѕРЅС‚РµРєСЃС‚РЅРѕРµ РјРµРЅСЋ. РџСЂРѕРІРµСЃС‚Рё Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєСѓСЋ РЅР°СЃС‚СЂРѕР№РєСѓ СЂРµРµСЃС‚СЂР°? (N/Y):";
 		cin >> ans;
 		//Reg configurate
 		if (ans == "Y" || ans == "y")
@@ -95,43 +94,43 @@ int main(int argc, char* argv[]) {
 					patch[k] = Patch[i];
 				k++;
 			}
-			cout << "Программа находится по пути: " << Patch << " Это местоположение можно будет изменить в будущем, еще раз запустив программу." << endl;
-			cout << "Введите ваш логин от FTP:";
+			cout << "РџСЂРѕРіСЂР°РјРјР° РЅР°С…РѕРґРёС‚СЃСЏ РїРѕ РїСѓС‚Рё: " << Patch << " Р­С‚Рѕ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРµ РјРѕР¶РЅРѕ Р±СѓРґРµС‚ РёР·РјРµРЅРёС‚СЊ РІ Р±СѓРґСѓС‰РµРј, РµС‰Рµ СЂР°Р· Р·Р°РїСѓСЃС‚РёРІ РїСЂРѕРіСЂР°РјРјСѓ." << endl;
+			cout << "Р’РІРµРґРёС‚Рµ РІР°С€ Р»РѕРіРёРЅ РѕС‚ FTP:";
 			cin >> login;
-			cout << "Введите ваш пароль:";
+			cout << "Р’РІРµРґРёС‚Рµ РІР°С€ РїР°СЂРѕР»СЊ:";
 			cin >> password;
 			ss << patch << "\\\\FTPLoader.exe" << " s1.mta-sa.ru " << login << " " << password << " %1";
 			_tsetlocale(LC_ALL, _T("Russain"));
 			TCHAR *szTestString = new TCHAR[45];
 			_tcscpy(szTestString, _T(ss.str().c_str()));
-			// Ключ который будем создавать
-			_TCHAR szPath[] = _T("*\\shell\\Отправить на сервер\\");
+			// РљР»СЋС‡ РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµРј СЃРѕР·РґР°РІР°С‚СЊ
+			_TCHAR szPath[] = _T("*\\shell\\РћС‚РїСЂР°РІРёС‚СЊ РЅР° СЃРµСЂРІРµСЂ\\");
 
 			HKEY hKey;
 
-			// Создаем ключ в ветке HKEY_CLASSES_ROOT
+			// РЎРѕР·РґР°РµРј РєР»СЋС‡ РІ РІРµС‚РєРµ HKEY_CLASSES_ROOT
 			if (RegCreateKeyEx(HKEY_CLASSES_ROOT, szPath, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL) != ERROR_SUCCESS) {
-				cout << _T("При создании ключа произошла ошибка1") << endl;
+				cout << _T("РџСЂРё СЃРѕР·РґР°РЅРёРё РєР»СЋС‡Р° РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°1") << endl;
 				return 1;
 			}
 			if (RegCloseKey(hKey) != ERROR_SUCCESS) {
-				cout << _T("При закрытии ключа произошла ошибка2") << endl;
+				cout << _T("РџСЂРё Р·Р°РєСЂС‹С‚РёРё РєР»СЋС‡Р° РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°2") << endl;
 				return 3;
 			};
-			// Создаем ключ в ветке HKEY_CLASSES_ROOT
-			if (RegCreateKeyEx(HKEY_CLASSES_ROOT, _T("*\\shell\\Отправить на сервер\\command\\"), 0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL) != ERROR_SUCCESS) {
-				cout << _T("При создании ключа произошла ошибка cmd") << endl;
+			// РЎРѕР·РґР°РµРј РєР»СЋС‡ РІ РІРµС‚РєРµ HKEY_CLASSES_ROOT
+			if (RegCreateKeyEx(HKEY_CLASSES_ROOT, _T("*\\shell\\РћС‚РїСЂР°РІРёС‚СЊ РЅР° СЃРµСЂРІРµСЂ\\command\\"), 0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, NULL) != ERROR_SUCCESS) {
+				cout << _T("РџСЂРё СЃРѕР·РґР°РЅРёРё РєР»СЋС‡Р° РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° cmd") << endl;
 				return 1;
 			}
 
-			// Пишем тестовую строку в созданный ключ в default
+			// РџРёС€РµРј С‚РµСЃС‚РѕРІСѓСЋ СЃС‚СЂРѕРєСѓ РІ СЃРѕР·РґР°РЅРЅС‹Р№ РєР»СЋС‡ РІ default
 			if (RegSetValue(hKey, NULL, REG_SZ, szTestString, sizeof(szTestString)) != ERROR_SUCCESS) {
-				cout << _T("При записи строки произошла ошибка") << endl;
+				cout << _T("РџСЂРё Р·Р°РїРёСЃРё СЃС‚СЂРѕРєРё РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°") << endl;
 				return 2;
 			}
-			// Закрываем описатель ключа
+			// Р—Р°РєСЂС‹РІР°РµРј РѕРїРёСЃР°С‚РµР»СЊ РєР»СЋС‡Р°
 			if (RegCloseKey(hKey) != ERROR_SUCCESS) {
-				cout << _T("При закрытии ключа произошла ошибка") << endl;
+				cout << _T("РџСЂРё Р·Р°РєСЂС‹С‚РёРё РєР»СЋС‡Р° РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°") << endl;
 				return 3;
 			};
 
@@ -168,7 +167,7 @@ int main(int argc, char* argv[]) {
 				system("pause");
 			}
 			if (RegSetValueEx(hKey, _T("Patch"), 0, REG_SZ, (BYTE*)szTestString2, sizeof(szTestString2)) != ERROR_SUCCESS) {
-				cout << _T("При записи строки произошла ошибка") << endl;
+				cout << _T("РџСЂРё Р·Р°РїРёСЃРё СЃС‚СЂРѕРєРё РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°") << endl;
 				return 2;
 			}
 
@@ -177,28 +176,28 @@ int main(int argc, char* argv[]) {
 
 		}
 		else
-			cout << "Вы отказались от автоматической настройки." << endl;
+			cout << "Р’С‹ РѕС‚РєР°Р·Р°Р»РёСЃСЊ РѕС‚ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕР№ РЅР°СЃС‚СЂРѕР№РєРё." << endl;
 
 		system("pause");
 		return 0;
 	}
 
 	ifstream S;
-	_TCHAR szPath1[] = _T("*\\shell\\Отправить на сервер\\");
+	_TCHAR szPath1[] = _T("*\\shell\\РћС‚РїСЂР°РІРёС‚СЊ РЅР° СЃРµСЂРІРµСЂ\\");
 	_tsetlocale(LC_ALL, _T("Russain"));
 	_TCHAR szBuf1[MAX_PATH];
 	DWORD dwBufLen1 = MAX_PATH;
 	HKEY hKey;
 	/*RegOpenKey(
 	hKey,
-	_T("*\\shell\\Отправить на сервер\\"),
+	_T("*\\shell\\РћС‚РїСЂР°РІРёС‚СЊ РЅР° СЃРµСЂРІРµСЂ\\"),
 	&hKey
 	);*/
-	RegOpenKeyEx(HKEY_CLASSES_ROOT, "*\\shell\\Отправить на сервер\\", NULL, KEY_QUERY_VALUE, &hKey);
+	RegOpenKeyEx(HKEY_CLASSES_ROOT, "*\\shell\\РћС‚РїСЂР°РІРёС‚СЊ РЅР° СЃРµСЂРІРµСЂ\\", NULL, KEY_QUERY_VALUE, &hKey);
 	if (RegQueryValueEx(hKey, "Patch", NULL, NULL, (LPBYTE)&szBuf1, &dwBufLen1) != ERROR_SUCCESS)
 		//if (RegGetValue(HKEY_CLASSES_ROOT, szPath1, _T("Patch"), RRF_RT_REG_SZ, NULL, (BYTE*)szBuf1, &dwBufLen1) != ERROR_SUCCESS)
 	{
-		cout << _T("При чтении строки произошла ошибка") << endl;
+		cout << _T("РџСЂРё С‡С‚РµРЅРёРё СЃС‚СЂРѕРєРё РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°") << endl;
 		system("pause");
 		return 4;
 	}
@@ -216,7 +215,7 @@ int main(int argc, char* argv[]) {
 		p << "DEL / Q / F " << szBuf1 << "\\conf.temp";
 		system(s.str().c_str());
 		system(p.str().c_str());
-		cout << "Успешно обновились. Повторите отправку файла." << endl;
+		cout << "РЈСЃРїРµС€РЅРѕ РѕР±РЅРѕРІРёР»РёСЃСЊ. РџРѕРІС‚РѕСЂРёС‚Рµ РѕС‚РїСЂР°РІРєСѓ С„Р°Р№Р»Р°." << endl;
 		system("pause");
 		return 0;
 	}
@@ -229,13 +228,13 @@ int main(int argc, char* argv[]) {
 	std::stringstream SS;
 	std::stringstream LL;
 
-	//	std::cout << "Параметров передано:" << argc << "\n";
+	//	std::cout << "РџР°СЂР°РјРµС‚СЂРѕРІ РїРµСЂРµРґР°РЅРѕ:" << argc << "\n";
 	ip = argv[1];
 	login = argv[2];
 	pass = argv[3];
 	for (int i = 4; i < argc; i++)
 	{
-		//	std::cout << "Праметр №" << i << " = " << argv[i] << std::endl;
+		//	std::cout << "РџСЂР°РјРµС‚СЂ в„–" << i << " = " << argv[i] << std::endl;
 		if (i + 1 < argc)
 		{
 			SS << argv[i] << "_";
@@ -277,10 +276,10 @@ int main(int argc, char* argv[]) {
 	//	k++;
 	//}
 	if (ftp.connectToHost(ip, login, pass))
-		std::cout << "Успешно подключились к серверу и авторизовались" << std::endl;
+		std::cout << "РЈСЃРїРµС€РЅРѕ РїРѕРґРєР»СЋС‡РёР»РёСЃСЊ Рє СЃРµСЂРІРµСЂСѓ Рё Р°РІС‚РѕСЂРёР·РѕРІР°Р»РёСЃСЊ" << std::endl;
 	else
 	{
-		cout << "Не верный логин или пароль. Не удалось покдлючиться к FTP." << endl;
+		cout << "РќРµ РІРµСЂРЅС‹Р№ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ. РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕРєРґР»СЋС‡РёС‚СЊСЃСЏ Рє FTP." << endl;
 		system("pause");
 	}
 	//std::cout << SS.str() << std::endl;
@@ -321,7 +320,7 @@ int main(int argc, char* argv[]) {
 	*t << szBuf1 << "\\Uppdater.exe";
 	if (temp != version)
 	{	
-		cout << "Вышла новая версия программы. Программа автоматически обновится." << endl;
+		cout << "Р’С‹С€Р»Р° РЅРѕРІР°СЏ РІРµСЂСЃРёСЏ РїСЂРѕРіСЂР°РјРјС‹. РџСЂРѕРіСЂР°РјРјР° Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РѕР±РЅРѕРІРёС‚СЃСЏ." << endl;
 		Sleep(1000);
 		if(!FtpGetFile(
 			ftp.ftp_session,
@@ -357,15 +356,15 @@ int main(int argc, char* argv[]) {
 		up1 << "DEL /Q /F " << szBuf1 << "\\conf.temp";
 		system(up1.str().c_str());
 	}
-	cout << "Начата загрузка файла." << endl;
+	cout << "РќР°С‡Р°С‚Р° Р·Р°РіСЂСѓР·РєР° С„Р°Р№Р»Р°." << endl;
 	if (ftp.put(LL.str().c_str(), SS.str().c_str()))
-		std::cout << "Передача файла успешна.\n";
+		std::cout << "РџРµСЂРµРґР°С‡Р° С„Р°Р№Р»Р° СѓСЃРїРµС€РЅР°.\n";
 	else
 	{
 		int Error = GetLastError();
-		std::cout << "Error №" << Error << std::endl;
+		std::cout << "Error в„–" << Error << std::endl;
 		if (Error == 2)
-			std::cout << "В названии файла есть пробел, исправьте ошибку и попробуйте еще раз.\n";
+			std::cout << "Р’ РЅР°Р·РІР°РЅРёРё С„Р°Р№Р»Р° РµСЃС‚СЊ РїСЂРѕР±РµР», РёСЃРїСЂР°РІСЊС‚Рµ РѕС€РёР±РєСѓ Рё РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·.\n";
 		ftp.close();
 		return system("pause");
 
@@ -374,19 +373,19 @@ int main(int argc, char* argv[]) {
 	SS.str("");
 	SS.clear();
 	SS << "http://" << ip << "/FTP/" << login << "/" << RusToEng(fileName);
-	CString source = SS.str().c_str(); //в эту переменную нужно записать текст, который в дальнейшем поместится в буфер обмена
-					//запись текста в буфер обмена
-	if (OpenClipboard(NULL))//открываем буфер обмена
+	CString source = SS.str().c_str(); //РІ СЌС‚Сѓ РїРµСЂРµРјРµРЅРЅСѓСЋ РЅСѓР¶РЅРѕ Р·Р°РїРёСЃР°С‚СЊ С‚РµРєСЃС‚, РєРѕС‚РѕСЂС‹Р№ РІ РґР°Р»СЊРЅРµР№С€РµРј РїРѕРјРµСЃС‚РёС‚СЃСЏ РІ Р±СѓС„РµСЂ РѕР±РјРµРЅР°
+					//Р·Р°РїРёСЃСЊ С‚РµРєСЃС‚Р° РІ Р±СѓС„РµСЂ РѕР±РјРµРЅР°
+	if (OpenClipboard(NULL))//РѕС‚РєСЂС‹РІР°РµРј Р±СѓС„РµСЂ РѕР±РјРµРЅР°
 	{
 		HGLOBAL hgBuffer;
 		char* chBuffer;
-		EmptyClipboard(); //очищаем буфер
-		hgBuffer = GlobalAlloc(GMEM_DDESHARE, source.GetLength() + 1);//выделяем память
-		chBuffer = (char*)GlobalLock(hgBuffer); //блокируем память
+		EmptyClipboard(); //РѕС‡РёС‰Р°РµРј Р±СѓС„РµСЂ
+		hgBuffer = GlobalAlloc(GMEM_DDESHARE, source.GetLength() + 1);//РІС‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ
+		chBuffer = (char*)GlobalLock(hgBuffer); //Р±Р»РѕРєРёСЂСѓРµРј РїР°РјСЏС‚СЊ
 		strcpy(chBuffer, LPCSTR(source));
-		GlobalUnlock(hgBuffer);//разблокируем память
-		SetClipboardData(CF_TEXT, hgBuffer);//помещаем текст в буфер обмена
-		CloseClipboard(); //закрываем буфер обмена
+		GlobalUnlock(hgBuffer);//СЂР°Р·Р±Р»РѕРєРёСЂСѓРµРј РїР°РјСЏС‚СЊ
+		SetClipboardData(CF_TEXT, hgBuffer);//РїРѕРјРµС‰Р°РµРј С‚РµРєСЃС‚ РІ Р±СѓС„РµСЂ РѕР±РјРµРЅР°
+		CloseClipboard(); //Р·Р°РєСЂС‹РІР°РµРј Р±СѓС„РµСЂ РѕР±РјРµРЅР°
 	}
 	Sleep(500);
 	//system("pause");
