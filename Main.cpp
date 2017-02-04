@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include "ftp.h"
 #include <iostream>
 #include <string.h>
@@ -10,7 +10,7 @@
 #include <algorithm>
 using namespace std;
 
-string version = "1.0.9";
+string version = "1.0.11";
 #pragma comment(lib,"wininet")
 
 Ftp::Ftp() {
@@ -67,12 +67,11 @@ int main(int argc, char* argv[]) {
 	if (argc == 1)
 	{
 		string ans;
-		cout << "Вы запустили программу не через контекстное меню. Провести автоматическую настройку реестра? (N/Y):";
+		cout << "Hello. Вы запустили программу не через контекстное меню. Провести автоматическую настройку реестра? (N/Y):";
 		cin >> ans;
 		//Reg configurate
 		if (ans == "Y" || ans == "y")
 		{
-			//C:\\MyProgramms\\FTPLoader.exe s1.mta - sa.ru Alex 456258 % 1
 			stringstream ss;
 			TCHAR patch[MAX_PATH + 40];
 			string login;
@@ -99,7 +98,7 @@ int main(int argc, char* argv[]) {
 			cin >> login;
 			cout << "Введите ваш пароль:";
 			cin >> password;
-			ss << patch << "\\\\FTPLoader.exe" << " s1.mta-sa.ru " << login << " " << password << " %1";
+			ss << patch << "\\\\FTPLoader.exe" << " ftp.mta-sa.ru " << login << " " << password << " %1";
 			_tsetlocale(LC_ALL, _T("Russain"));
 			TCHAR *szTestString = new TCHAR[45];
 			_tcscpy(szTestString, _T(ss.str().c_str()));
@@ -299,7 +298,7 @@ int main(int argc, char* argv[]) {
 		system("DEL /Q /F conf.temp");
 		FtpGetFile(
 				ftp.ftp_session,
-				"/xampp/htdocs/FTP/settings.cfg",
+				"settings.cfg",
 				t->str().c_str(),
 				true,
 				FILE_ATTRIBUTE_NORMAL,
@@ -336,7 +335,7 @@ int main(int argc, char* argv[]) {
 			system("DEL /Q /F Uppdater.exe ");
 			FtpGetFile(
 				ftp.ftp_session,
-				"/xampp/htdocs/FTP/Uppdater.exe",
+				"Uppdater.exe",
 				t->str().c_str(),
 				true,
 				FILE_ATTRIBUTE_NORMAL,
@@ -372,7 +371,7 @@ int main(int argc, char* argv[]) {
 	ftp.close();
 	SS.str("");
 	SS.clear();
-	SS << "http://" << ip << "/FTP/" << login << "/" << RusToEng(fileName);
+	SS << "http://" << ip << "/" << login << "/" << RusToEng(fileName);
 	CString source = SS.str().c_str(); //в эту переменную нужно записать текст, который в дальнейшем поместится в буфер обмена
 					//запись текста в буфер обмена
 	if (OpenClipboard(NULL))//открываем буфер обмена
