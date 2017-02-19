@@ -81,7 +81,7 @@ int main(int argc, char* argv[]) {
 	system("taskkill /f /im FTPLoader.exe");
 	system("cls");
 	Ftp ftp;
-	char* ip = "ftp.mta-sa.ru";
+	char* ip = "load.mta-sa.ru";
 	char* login =  argv[1];
 	char* pass = argv[2];
 	if (argc == 1)

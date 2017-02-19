@@ -10,7 +10,7 @@
 #include <algorithm>
 using namespace std;
 
-string version = "1.0.11";
+string version = "1.0.15";
 #pragma comment(lib,"wininet")
 
 Ftp::Ftp() {
@@ -63,7 +63,7 @@ string RusToEng(string m) {
 
 int main(int argc, char* argv[]) {
 	setlocale(0, "");
-
+	std::cout << "Версия: " << version << std::endl;
 	if (argc == 1)
 	{
 		string ans;
@@ -98,7 +98,7 @@ int main(int argc, char* argv[]) {
 			cin >> login;
 			cout << "Введите ваш пароль:";
 			cin >> password;
-			ss << patch << "\\\\FTPLoader.exe" << " ftp.mta-sa.ru " << login << " " << password << " %1";
+			ss << patch << "\\\\FTPLoader.exe" << " load.mta-sa.ru " << login << " " << password << " %1";
 			_tsetlocale(LC_ALL, _T("Russain"));
 			TCHAR *szTestString = new TCHAR[45];
 			_tcscpy(szTestString, _T(ss.str().c_str()));
@@ -275,7 +275,9 @@ int main(int argc, char* argv[]) {
 	//	k++;
 	//}
 	if (ftp.connectToHost(ip, login, pass))
+	{
 		std::cout << "Успешно подключились к серверу и авторизовались" << std::endl;
+	}
 	else
 	{
 		cout << "Не верный логин или пароль. Не удалось покдлючиться к FTP." << endl;
@@ -295,6 +297,7 @@ int main(int argc, char* argv[]) {
 		NULL
 	))
 	{
+		cout << "Не смогли проверить версию. Попытка №2." << endl;
 		system("DEL /Q /F conf.temp");
 		FtpGetFile(
 				ftp.ftp_session,
@@ -302,7 +305,7 @@ int main(int argc, char* argv[]) {
 				t->str().c_str(),
 				true,
 				FILE_ATTRIBUTE_NORMAL,
-				FTP_TRANSFER_TYPE_BINARY,
+				INTERNET_FLAG_TRANSFER_BINARY,
 				NULL
 			);
 	}
@@ -355,7 +358,7 @@ int main(int argc, char* argv[]) {
 		up1 << "DEL /Q /F " << szBuf1 << "\\conf.temp";
 		system(up1.str().c_str());
 	}
-	cout << "Начата загрузка файла." << endl;
+	std::cout << "Отправляем файл. Ожидайте..." << std::endl;
 	if (ftp.put(LL.str().c_str(), SS.str().c_str()))
 		std::cout << "Передача файла успешна.\n";
 	else
