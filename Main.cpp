@@ -10,7 +10,7 @@
 #include <algorithm>
 using namespace std;
 
-string version = "1.0.15";
+string version = "1.0.21";
 #pragma comment(lib,"wininet")
 
 Ftp::Ftp() {
@@ -22,7 +22,7 @@ Ftp::~Ftp() {
 bool Ftp::connectToHost(const char *ftp_host, const char *uid, const char *pwd) {
 	strcpy(host, ftp_host);
 	internet = InternetOpenA(NULL, INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0);
-	ftp_session = InternetConnectA(internet, host, INTERNET_DEFAULT_FTP_PORT, uid, pwd, INTERNET_SERVICE_FTP, 0, 0);
+	ftp_session = InternetConnectA(internet, host, INTERNET_DEFAULT_FTP_PORT, uid, pwd, INTERNET_SERVICE_FTP, INTERNET_FLAG_PASSIVE, 0);
 	return (ftp_session != NULL);
 }
 
@@ -50,13 +50,19 @@ bool Ftp::renameFile(const char *f_old, const char *f_new) {
 
 
 string RusToEng(string m) {
-	char R[] = {'А','Б' ,'В' ,'Г' ,'Д' ,'Е' ,'Ё' ,'Ж' ,'З' ,'И' ,'Й' ,'К' ,'Л' ,'М' ,'Н', 'О', 'П', 'Р', 'С', 'Т', 'У' ,'Ф' ,'Х' ,'Ц' ,'Ч' ,'Ш' ,'Щ' ,'Ъ' ,'Ы' ,'Ь' ,'Э' ,'Ю' ,'Я' };
+	char R[] = { 'А','Б' ,'В' ,'Г' ,'Д' ,'Е' ,'Ё' ,'Ж' ,'З' ,'И' ,'Й' ,'К' ,'Л' ,'М' ,'Н', 'О', 'П', 'Р', 'С', 'Т', 'У' ,'Ф' ,'Х' ,'Ц' ,'Ч' ,'Ш' ,'Щ' ,'Ъ' ,'Ы' ,'Ь' ,'Э' ,'Ю' ,'Я' };
 	char r[] = { 'а','б' ,'в' ,'г' ,'д' ,'е' ,'ё' ,'ж' ,'з' ,'и' ,'й' ,'к' ,'л' ,'м' ,'н', 'о', 'п', 'р', 'с', 'т', 'у' ,'ф' ,'х' ,'ц' ,'ч' ,'ш' ,'щ' ,'ъ' ,'ы' ,'ь' ,'э' ,'ю' ,'я' };
-	char E[] = { 'A', 'B', 'V', 'G', 'D', 'E', 'E', 'J', 'Z', 'I', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'C', 'ch', 'SH', 'SH', 'b', 'bI', 'b', '3', 'IO', '9I'};
+	char E[] = { 'A', 'B', 'V', 'G', 'D', 'E', 'E', 'J', 'Z', 'I', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'R', 'S', 'T', 'U', 'F', 'H', 'C', 'ch', 'SH', 'SH', 'b', 'bI', 'b', '3', 'IO', '9I' };
+
 	for (size_t i = 0; i < 33; i++)
 	{
 		replace(m.begin(), m.end(), R[i], E[i]);
 		replace(m.begin(), m.end(), r[i], E[i]);
+	}
+	char s[] = { '!', '@', '\'', '#' , '%' , '^' , '&' , '(' , ')', ';', '№' };
+	for (size_t i = 0; i < 11; i++)
+	{
+		replace(m.begin(), m.end(), s[i], '_');
 	}
 	return m;
 }
@@ -98,6 +104,27 @@ int main(int argc, char* argv[]) {
 			cin >> login;
 			cout << "Введите ваш пароль:";
 			cin >> password;
+			Ftp ftp;
+			if (ftp.connectToHost("load.mta-sa.ru", login.c_str(), password.c_str()))
+			{
+			}
+			else
+			{
+				if (GetLastError() == 12014)
+				{
+					relog:
+					cout << "Password is incorrect.\nПовторите ввод:" << endl;
+					cout << "Введите ваш логин от FTP:";
+					cin >> login;
+					cout << "Введите ваш пароль:";
+					cin >> password;
+					if (!ftp.connectToHost("load.mta-sa.ru", login.c_str(), password.c_str()))
+					{
+						if (GetLastError() == 12014)
+							goto relog;
+					}
+				}
+			}
 			ss << patch << "\\\\FTPLoader.exe" << " load.mta-sa.ru " << login << " " << password << " %1";
 			_tsetlocale(LC_ALL, _T("Russain"));
 			TCHAR *szTestString = new TCHAR[45];
@@ -175,8 +202,12 @@ int main(int argc, char* argv[]) {
 
 		}
 		else
+		{
 			cout << "Вы отказались от автоматической настройки." << endl;
-
+			system("pause");
+			return 0;
+		}
+		cout << "Вы успешно настроили программу, теперь вы можете отправлять файлы через контекстное меню." << endl;
 		system("pause");
 		return 0;
 	}
@@ -233,7 +264,7 @@ int main(int argc, char* argv[]) {
 	pass = argv[3];
 	for (int i = 4; i < argc; i++)
 	{
-		//	std::cout << "Праметр №" << i << " = " << argv[i] << std::endl;
+			//std::cout << "Праметр №" << i << " = " << argv[i] << std::endl;
 		if (i + 1 < argc)
 		{
 			SS << argv[i] << "_";
@@ -254,9 +285,15 @@ int main(int argc, char* argv[]) {
 		;
 	while (s[++i] != '\0')
 		fileName += s[i];
+	//if(fileName.rfind(".php") != std::string::npos)
+	//{
+	//	cout << "Передача файлов .php запрещена. Упакуйте его в архив." << endl;
+	//	system("pause");
+	//	return 0;
+	//}
 	SS.str("");
 	SS.clear();
-	SS << login << "/" << RusToEng(fileName);
+	SS << "file.load.mta-sa.ru/" << login << "/" << RusToEng(fileName);
 	//std::cout << SS.str() << std::endl;
 	TCHAR Patch[MAX_PATH];
 	TCHAR patch[MAX_PATH + 40];
@@ -274,14 +311,24 @@ int main(int argc, char* argv[]) {
 	//		patch[k] = Patch[i];
 	//	k++;
 	//}
+
+	// Тут будет код вызывающий обновление на ftp сервере 
+	
 	if (ftp.connectToHost(ip, login, pass))
 	{
 		std::cout << "Успешно подключились к серверу и авторизовались" << std::endl;
 	}
 	else
 	{
-		cout << "Не верный логин или пароль. Не удалось покдлючиться к FTP." << endl;
+		cout << "Не удалось покдлючиться к FTP." << endl;
+		if(GetLastError() == 12014)
+		{
+			cout << "Password is incorrect." << endl;
+		}
+		if (GetLastError() == 12029)
+			cout << "Cannot connect to server." << endl;
 		system("pause");
+		return 0;
 	}
 	//std::cout << SS.str() << std::endl;
 	stringstream *t = new stringstream();
@@ -374,7 +421,7 @@ int main(int argc, char* argv[]) {
 	ftp.close();
 	SS.str("");
 	SS.clear();
-	SS << "http://" << ip << "/" << login << "/" << RusToEng(fileName);
+	SS << "http://" << "file.load.mta-sa.ru" << "/" << login << "/" << RusToEng(fileName);
 	CString source = SS.str().c_str(); //в эту переменную нужно записать текст, который в дальнейшем поместится в буфер обмена
 					//запись текста в буфер обмена
 	if (OpenClipboard(NULL))//открываем буфер обмена

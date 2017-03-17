@@ -6,12 +6,12 @@ Main.cpp(47): warning C4800: 'BOOL': forcing value to bool 'true' or 'false' (pe
 Main.cpp(55): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
 Main.cpp(55): warning C4305: 'initializing': truncation from 'int' to 'char'
 Main.cpp(55): warning C4309: 'initializing': truncation of constant value
-Main.cpp(262): warning C4101: 'patch': unreferenced local variable
-Main.cpp(261): warning C4101: 'Patch': unreferenced local variable
+Main.cpp(299): warning C4101: 'patch': unreferenced local variable
+Main.cpp(298): warning C4101: 'Patch': unreferenced local variable
   Generating code
-  33 of 373 functions ( 8.8%) were compiled, the rest were copied from previous compilation.
+  34 of 373 functions ( 9.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    3 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   FTPLoader.vcxproj -> C:\Users\Владелец\Documents\Visual Studio 2015\Projects\FTPLoader\Release\FTPLoader.exe
   FTPLoader.vcxproj -> C:\Users\Владелец\Documents\Visual Studio 2015\Projects\FTPLoader\Release\FTPLoader.pdb (Full PDB)
